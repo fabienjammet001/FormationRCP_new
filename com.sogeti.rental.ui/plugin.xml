@@ -8,13 +8,16 @@
             name="Rental">
       </category>
       <view
+            category="com.sogeti.rental.ui.Rental"
             class="com.sogeti.rental.ui.views.RentalPropertyView"
             id="com.sogeti.rental.ui.rentalPropertyView"
             name="Rental Property"
             restorable="true">
       </view>
       <view
+            category="com.sogeti.rental.ui.Rental"
             class="com.sogeti.rental.ui.views.RentalAgencyView"
+            icon="icons/Agency.png"
             id="com.sogeti.rental.ui.RentalAgencyView"
             name="Agency"
             restorable="true">

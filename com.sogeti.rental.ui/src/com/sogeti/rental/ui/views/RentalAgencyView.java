@@ -28,6 +28,7 @@ public class RentalAgencyView extends ViewPart {
 		agencyViewer.setContentProvider( provider);
 		agencyViewer.setLabelProvider( provider);
 		agencyViewer.setInput( agencies );
+		getSite().setSelectionProvider(agencyViewer);
 
 	}
 
