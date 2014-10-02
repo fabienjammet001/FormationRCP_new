@@ -16,6 +16,7 @@ public class RentalPerspective implements IPerspectiveFactory {
 		addPerspectiveShortcuts(layout);
 		layout.addView("com.sogeti.rental.ui.RentalAgencyView", IPageLayout.LEFT, 0.48f, IPageLayout.ID_EDITOR_AREA);
 		layout.addView("com.sogeti.rental.ui.rentalPropertyView", IPageLayout.BOTTOM, 0.5f, "com.sogeti.rental.ui.RentalAgencyView");
+		layout.addView("com.sogeti.rental.ui.views.CustomerView", IPageLayout.RIGHT, 0.5f, "com.sogeti.rental.ui.rentalPropertyView");
 	}
 
 	/**

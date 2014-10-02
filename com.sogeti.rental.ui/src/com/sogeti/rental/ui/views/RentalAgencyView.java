@@ -1,14 +1,14 @@
 package com.sogeti.rental.ui.views;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.ISelectionListener;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
@@ -36,6 +36,11 @@ public class RentalAgencyView extends ViewPart implements IPropertyChangeListene
 		agencyViewer.setLabelProvider( provider);
 		agencyViewer.setInput( agencies );
 		getSite().setSelectionProvider(agencyViewer);
+		
+		MenuManager menuManager = new MenuManager();
+		Menu menu = menuManager.createContextMenu(agencyViewer.getControl());
+		agencyViewer.getControl().setMenu(menu);
+		getSite().registerContextMenu(menuManager, agencyViewer);
 		
 
 	}
