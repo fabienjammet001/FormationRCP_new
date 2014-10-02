@@ -23,5 +23,28 @@
             restorable="true">
       </view>
    </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="com.sogeti.rental.ui.perspectives.RentalPerspective"
+            icon="icons/Rentals.png"
+            id="com.sogeti.rental.ui.perspectives.RentalPerspective"
+            name="Rental">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.sogeti.rental.ui.prefs.RentalColorPreferencePage"
+            id="com.sogeti.rental.ui.prefs.RentalPreferencePages"
+            name="Colors">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.sogeti.rental.ui.prefs.RentalInitPref">
+      </initializer>
+   </extension>
 
 </plugin>

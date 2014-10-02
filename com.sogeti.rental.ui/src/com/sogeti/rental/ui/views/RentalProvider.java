@@ -4,6 +4,9 @@ import java.awt.Image;
 import java.io.ObjectInputStream.GetField;
 import java.util.Collection;
 
+import org.eclipse.jface.resource.ColorRegistry;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.resource.StringConverter;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -84,6 +87,38 @@ public class RentalProvider extends LabelProvider implements
 		private String label = "";
 		private RentalAgency a;
 		
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result + ((a == null) ? 0 : a.hashCode());
+			result = prime * result + ((label == null) ? 0 : label.hashCode());
+			return result;
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Node other = (Node) obj;
+			if (!getOuterType().equals(other.getOuterType()))
+				return false;
+			if (a == null) {
+				if (other.a != null)
+					return false;
+			} else if (!a.equals(other.a))
+				return false;
+			if (label == null) {
+				if (other.label != null)
+					return false;
+			} else if (!label.equals(other.label))
+				return false;
+			return true;
+		}
 		public Node(String label, RentalAgency a) {
 			super();
 			this.label = label;
@@ -121,19 +156,26 @@ public class RentalProvider extends LabelProvider implements
 			// TODO Auto-generated method stub
 			return label;
 		}
+		private RentalProvider getOuterType() {
+			return RentalProvider.this;
+		}
 	}
 	@Override
 	public Color getForeground(Object element) {
 		// TODO Auto-generated method stub
 		if ( element instanceof Customer)
-			return Display.getCurrent().getSystemColor(SWT.COLOR_BLUE);
+			return getColor(RentalUiActivator.getDefault().getPreferenceStore().getString(PREF_CUSTOMERS));
 		else if (element instanceof RentalObject)
 		{
-			return Display.getCurrent().getSystemColor(SWT.COLOR_RED);
+			return getColor(RentalUiActivator.getDefault().getPreferenceStore().getString(PREF_RENTALS_OBJECTS));
+		}
+		else if (element instanceof RentalAgency)
+		{
+			return getColor("0,0,0");
 		}
 		else
 		{
-			return Display.getCurrent().getSystemColor(SWT.COLOR_BLACK);
+			return getColor(RentalUiActivator.getDefault().getPreferenceStore().getString(PREF_RENTALS));
 		}
 	}
 
@@ -154,6 +196,18 @@ public class RentalProvider extends LabelProvider implements
 			return RentalUiActivator.getDefault().getImageRegistry().get(ICONS_RENTALS);		
 		else			
 			return null;	
+	}
+	
+	private Color getColor( String rgbKey)
+	{
+		ColorRegistry colorRegistry = JFaceResources.getColorRegistry();
+		Color c = colorRegistry.get(rgbKey);
+		if ( c == null)
+		{
+			colorRegistry.put(rgbKey, StringConverter.asRGB(rgbKey));
+			c = colorRegistry.get(rgbKey);
+		}
+		return c;
 	}
 	
 }
