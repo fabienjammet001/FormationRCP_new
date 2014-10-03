@@ -5,9 +5,8 @@ import org.eclipse.ui.IPerspectiveFactory;
 
 public class RentalPerspective implements IPerspectiveFactory {
 
-	/**
-	 * Creates the initial layout for a page.
-	 */
+	public static final String   ID     = "com.sogeti.rental.ui.perspectives.RentalPerspective";
+	
 	public void createInitialLayout(IPageLayout layout) {
 		layout.setEditorAreaVisible(false);
 		String editorArea = layout.getEditorArea();

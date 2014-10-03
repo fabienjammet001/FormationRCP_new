@@ -24,6 +24,7 @@ public class RentalInitPref extends AbstractPreferenceInitializer implements Ren
 		ps.setDefault(PREF_CUSTOMERS, StringConverter.asString(c.getRGB()));
 		ps.setDefault(PREF_RENTALS, StringConverter.asString(new RGB(255,125,17)));
 		ps.setDefault(PREF_RENTALS_OBJECTS, StringConverter.asString(new RGB(255,255,0)));
+		ps.setDefault(PREF_PALETTE, "com.sogeti.rental.ui.palette2");
 		
 		
 
