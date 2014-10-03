@@ -12,5 +12,6 @@ public interface RentalUIConstants{
 	final String PREF_CUSTOMERS         = "Customer";
 	final String PREF_RENTALS           = "Rental";
 	final String PREF_RENTALS_OBJECTS   = "Objects";
+	final String PREF_PALETTE           = "Palette";
 }
 

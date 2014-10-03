@@ -3,6 +3,7 @@ package com.sogeti.rental.ui.views;
 import java.awt.Image;
 import java.io.ObjectInputStream.GetField;
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.jface.resource.ColorRegistry;
 import org.eclipse.jface.resource.JFaceResources;
@@ -19,6 +20,7 @@ import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalObject;
+import com.sogeti.rental.ui.Palette;
 import com.sogeti.rental.ui.RentalUiActivator;
 
 public class RentalProvider extends LabelProvider implements
@@ -162,21 +164,13 @@ public class RentalProvider extends LabelProvider implements
 	}
 	@Override
 	public Color getForeground(Object element) {
-		// TODO Auto-generated method stub
-		if ( element instanceof Customer)
-			return getColor(RentalUiActivator.getDefault().getPreferenceStore().getString(PREF_CUSTOMERS));
-		else if (element instanceof RentalObject)
-		{
-			return getColor(RentalUiActivator.getDefault().getPreferenceStore().getString(PREF_RENTALS_OBJECTS));
-		}
-		else if (element instanceof RentalAgency)
-		{
-			return getColor("0,0,0");
-		}
-		else
-		{
-			return getColor(RentalUiActivator.getDefault().getPreferenceStore().getString(PREF_RENTALS));
-		}
+		String id_p = RentalUiActivator.getDefault().getPreferenceStore().getString(PREF_PALETTE);
+		Map<String, Palette> palettes = RentalUiActivator.getDefault().getPaletteManager();
+		Palette p = palettes.get(id_p);
+		
+		
+		return p.getProvider().getForeground(element);
+
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="palette" name="palette" schema="schema/palette.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <category
@@ -42,9 +43,15 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
+            category="com.sogeti.rental.ui.prefpalette"
             class="com.sogeti.rental.ui.prefs.RentalColorPreferencePage"
             id="com.sogeti.rental.ui.prefs.RentalPreferencePages"
-            name="Colors">
+            name="Default">
+      </page>
+      <page
+            class="com.sogeti.rental.ui.prefs.PalettePreferencePage"
+            id="com.sogeti.rental.ui.prefpalette"
+            name="palette">
       </page>
    </extension>
    <extension
@@ -125,6 +132,24 @@
             id="com.sogeti.rental.ui.commands.sampleCommand"
             name="RentalSampleCommand">
       </command>
+   </extension>
+   <extension
+         point="com.sogeti.rental.ui.palette">
+      <palette
+            class="com.sogeti.rental.ui.palette.DefaultPaletteProvider"
+            id="com.sogeti.rental.ui.palette2"
+            name="default">
+      </palette>
+      <palette
+            class="com.sogeti.rental.ui.palette.PaletteJaune"
+            id="com.sogeti.rental.ui.palette3"
+            name="Jaune ">
+      </palette>
+      <palette
+            class="com.sogeti.rental.ui.palette.PaletteBleue"
+            id="com.sogeti.rental.ui.palette4"
+            name="Bleu">
+      </palette>
    </extension>
 
 </plugin>
